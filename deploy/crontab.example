@@ -1,0 +1,5 @@
+# Daily jobs. Inside Docker, prefix each with:  docker compose -f deploy/docker-compose.yml exec -T app
+# Times are server time.
+15 1 * * *  python manage.py purge_expired     # deletes CVs and jobs past 30 days (the privacy promise)
+30 1 * * *  python manage.py backup            # database backup (then COPY the backups folder off the server)
+0  8 * * *  python manage.py send_reminders    # follow-up reminder emails
